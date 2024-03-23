@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 
 export const AreaHome = styled.div`
+display: flex;
+margin-top:19rem;
+ align-items: center;
+ justify-content: center;
 
  form{
     display: flex;
