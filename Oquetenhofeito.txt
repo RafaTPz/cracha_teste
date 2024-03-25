@@ -1,0 +1,106 @@
+para iniciar um projeto react eu o instalo da seguinte forma:
+npm create react-app 'nomeprojeto"
+
+apos isso eu limpo arquivos inuteis e tiro dados 
+inuteis de arquivos importantes
+
+após isso eu instalo outras dependencias em que eu acho fundamentais
+
+como o react-router-dom que é a biblioteca de rotas:
+npm install react-router-dom@6  // @6 porque foi adicionada a função
+de useNavigate, na qual é muito util para mim
+
+o styled-components, um css para o React:
+npm install styled-components
+
+após isso eu importo o BrowserRoutes no app, e insiro o no meio com
+a função de Rotas dentre ele(que o arquivo tambem é importado).
+
+<BrowserRoutes>
+ <Rotas />
+</BrowserRoutes>
+
+crio o arquivo das Rotas, na qual importarei Routes e Route, e criarei
+a função Rotas, a qual foi chamada antes.
+farei um return no qual colocarei o Routes e em cada rota será um Route:
+
+const Rotas = () => {
+    <Routes>
+      <Route path="/" element="<Home/>"
+    </Routes>
+}
+
+e importarei a função Home do arquivo Home em Rotas
+
+eu crio a pasta das paginas, crio a pasta Home, na qual terá um index
+da pasta, e um styled para estilizar a pagina depois
+em Home eu crio a função de Home
+
+_________________E PRIMEIRAMENTE O BÁSICO ESTÁ FEITO!_________________
+
+Projeto de gerar crachás:
+
+após criar a Home, no return eu crio os Inputs e Labels, na qual as
+Label puxarão o nome dos Inputs, e os inputs conterão, type, name,
+isRequired e um evento de onChanged.
+
+<Label forHTMLname="nome">Nome:</Label>
+<Input type="text" name="nome" isRequired{true} onChange={onChanged}/>
+
+tem também um botão, no qual no método onClick trará o evento de
+enviar o formulário
+
+<button onClick={enviarForm}>Enviar</button>
+
+parte de códigos:
+
+criarei um objeto de uma pessoa
+
+const ObjetoPessoa = {
+    nome,
+    sobrenome,
+    idade,
+    cpf,
+}
+
+importar useState do React
+
+criação do estado pessoa com useState, na qual receberá o objeto como
+definição:
+const [pessoa, setPessoa] = useState(ObjetoPessoa);
+
+e depois disso criarei o evento de onChanged na qual foi chamado nos
+inputs,
+no onChanged haverá um "e" que simbolize o evento, transformar o 
+name do input com o valor aplicado, no nome equivalente na array
+do objeto e seu alvo
+e depois setará esses dados no estado "pessoa"
+
+const onChanged = (e) => {
+    const {name, value} = e.target
+    setPessoa = ({ ...pessoa, [name]: value})
+};
+
+definir o navigate:
+
+const navigate = useNavigate();
+
+depois criarei o evento enviarForm do botão, na qual terá o navigate
+para enviar tanto voce, quanto os arquivos para outra pagina
+
+const enviarForm = () => {
+    navigate("/cracha", {state: {pessoa}})
+};
+
+cria em pages a pastinha do cracha, importa ele no home, e em cracha
+importar a variavel do useLocation, na qual voce vai definir ele
+
+const location = useLocation
+
+e após isso trará os arquivos de home seguindo o metodo utilizado no
+navigate:
+
+const {pessoa} = location.state
+
+pronto, para puxar o arquivo é só digitar {pessoa.nome} ou outra
+caracteristica digitada do objeto pessoa
